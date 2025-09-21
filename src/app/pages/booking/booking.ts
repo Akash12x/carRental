@@ -31,17 +31,25 @@ export class Booking implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bookingService.getAllBookings().subscribe((res: APIResponse) => {
-      this.bookingList = res.data;
-    });
-    this.bookingService.getAllCars().subscribe((res: APIResponse) => {
-      this.carList = res.data;
-    });
+    this.getbookingList();
+    this.getCarList();
   }
 
   onSaveBooking() {}
 
   onDelete(event: any) {
     console.log(event);
+  }
+
+  getbookingList() {
+    this.bookingService.getAllBookings().subscribe((res: APIResponse) => {
+      this.bookingList = res.data;
+    });
+  }
+
+  getCarList() {
+    this.bookingService.getAllCars().subscribe((res: APIResponse) => {
+      this.carList = res.data;
+    });
   }
 }
