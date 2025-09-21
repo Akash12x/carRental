@@ -1,0 +1,146 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Car List -->
+    <div class="col-lg-8 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Car List</h5>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Image</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Daily Rate</th>
+                <th>Reg. No</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Row -->
+              @for (car of carList; track $index) {
+
+              <tr>
+                <td>
+                  <img src="https://via.placeholder.com/60x40" class="img-thumbnail" />
+                </td>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.dailyRate }}</td>
+                <td>{{ car.regNo }}</td>
+                <td>
+                  <button (click)="onEdit(car)" class="btn btn-sm btn-outline-primary me-1">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button (click)="onDeleteCar(car)" class="btn btn-sm btn-outline-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              }
+              <!-- Repeat dynamically with *ngFor -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car Form -->
+    <div class="col-lg-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">Add / Edit Car</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Brand</label>
+              <input
+                type="text"
+                [(ngModel)]="newCarObj.brand"
+                name="brand"
+                class="form-control"
+                placeholder="Enter brand"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Model</label>
+              <input
+                type="text"
+                [(ngModel)]="newCarObj.model"
+                name="model"
+                class="form-control"
+                placeholder="Enter model"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Year</label>
+              <input
+                type="number"
+                [(ngModel)]="newCarObj.year"
+                name="year"
+                class="form-control"
+                placeholder="Enter year"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Color</label>
+              <input
+                type="text"
+                [(ngModel)]="newCarObj.color"
+                name="color"
+                class="form-control"
+                placeholder="Enter color"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Daily Rate</label>
+              <input
+                type="number"
+                [(ngModel)]="newCarObj.dailyRate"
+                name="dailyRate"
+                class="form-control"
+                placeholder="Enter daily rate"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Car Image URL</label>
+              <input
+                type="text"
+                [(ngModel)]="newCarObj.carImage"
+                name="carImage"
+                class="form-control"
+                placeholder="Enter image link"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Registration No.</label>
+              <input
+                type="text"
+                [(ngModel)]="newCarObj.regNo"
+                name="regNo"
+                class="form-control"
+                placeholder="Enter Reg No"
+              />
+            </div>
+            @if(newCarObj.carId=== 0) {
+            <button (click)="onSaveCar()" type="submit" class="btn btn-success w-100">
+              Save Car
+            </button>
+            } @else{
+            <button (click)="onUpdateCar()" type="submit" class="btn btn-warning w-100">
+              Update Car
+            </button>
+            }
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

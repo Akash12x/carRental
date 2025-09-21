@@ -1,0 +1,31 @@
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.table img {
+  max-width: 60px;
+  border-radius: 6px;
+}
+
+.table thead th {
+  white-space: nowrap;
+}
+
+form .form-control {
+  border-radius: 8px;
+}
+
+.btn {
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}

@@ -1,0 +1,155 @@
+/* Fullscreen Background */
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #1a1a2e, #0f0f1a 70%);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.form-control::placeholder {
+  color: rgba(0, 217, 255, 0.7); /* glowing cyan */
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Futuristic Glass Card */
+.glass-card {
+  position: relative;
+  width: 360px;
+  padding: 40px 30px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Titles */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #00d9ff;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.8);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 30px;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 40px 12px 38px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  background: rgba(0, 217, 255, 0.08);
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.7);
+}
+
+/* Icons */
+.icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00d9ff;
+  font-size: 14px;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.toggle-icon:hover {
+  color: #00d9ff;
+}
+
+/* Futuristic Button */
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #00d9ff, #0077ff, #00d9ff);
+  background-size: 300% 300%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease;
+  animation: neonShift 5s linear infinite;
+}
+
+.btn-login:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(0, 217, 255, 0.9);
+}
+
+/* Extra Links */
+.extra {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.extra a {
+  font-size: 13px;
+  color: #00d9ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.extra a:hover {
+  color: #66e0ff;
+}
+
+/* Animations */
+@keyframes neonShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
