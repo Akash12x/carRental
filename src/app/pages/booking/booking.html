@@ -15,9 +15,7 @@
               <tr>
                 <th>#</th>
                 <th>Customer</th>
-                <th>City</th>
                 <th>Mobile</th>
-                <th>Email</th>
                 <th>Date</th>
                 <th>Total</th>
                 <th>Action</th>
@@ -25,12 +23,11 @@
             </thead>
             <tbody>
               <!-- Example Row -->
-              <tr *ngFor="let booking of bookingList; let i = index">
-                <td>{{ i + 1 }}</td>
+              @for (booking of bookingList; track $index) {
+              <tr>
+                <td>{{ $index + 1 }}</td>
                 <td>{{ booking.customerName }}</td>
-                <td>{{ booking.customerCity }}</td>
                 <td>{{ booking.mobileNo }}</td>
-                <td>{{ booking.email }}</td>
                 <td>{{ booking.bookingDate }}</td>
                 <td>₹ {{ booking.totalBillAmount }}</td>
                 <td>
@@ -39,9 +36,11 @@
                   </button>
                 </td>
               </tr>
-              <tr *ngIf="bookingList.length === 0">
+              } @if (bookingList.length === 0) {
+              <tr>
                 <td colspan="8" class="text-center text-muted py-3">No bookings found.</td>
               </tr>
+              }
             </tbody>
           </table>
         </div>
@@ -94,12 +93,15 @@
                 />
               </div>
               <!-- Car ID -->
-              <label for="cars">Choose a car:</label>
-              <select id="cars" name="cars">
-                @for (item of carList; track $index) {
-                <option value="{{ item.carId }}">{{ item.brand }} - {{ item.model }}</option>
-                }
-              </select>
+              <div class="col-md-12">
+                <label for="cars" class="form-label">Choose a car</label>
+                <select id="cars" class="form-select" formControlName="carId">
+                  <option value="">-- Select Car --</option>
+                  <option *ngFor="let item of carList" [value]="item.carId">
+                    {{ item.brand }} - {{ item.model }}
+                  </option>
+                </select>
+              </div>
               <!-- Discount -->
               <div class="col-md-6">
                 <input

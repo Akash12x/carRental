@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BookingService } from '../../services/booking-service';
-import { APIResponse } from '../../model/car';
+import { APIResponse, BookingResponse, CarReponse } from '../../model/car';
 
 @Component({
   selector: 'app-booking',
@@ -13,8 +13,8 @@ import { APIResponse } from '../../model/car';
 })
 export class Booking implements OnInit {
   bookingService = inject(BookingService);
-  bookingList: any = [];
-  carList: any = [];
+  bookingList: BookingResponse[] = [];
+  carList: CarReponse[] = [];
   bookingForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -23,10 +23,11 @@ export class Booking implements OnInit {
       customerCity: ['', Validators.required],
       mobileNo: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      carId: ['', Validators.required],
+      carId: [0, Validators.required],
       discount: [0],
       bookingDate: ['', Validators.required],
       totalBillAmount: [0, Validators.required],
+      bookingId: [0, Validators.required],
     });
   }
 
@@ -35,10 +36,26 @@ export class Booking implements OnInit {
     this.getCarList();
   }
 
-  onSaveBooking() {}
+  onSaveBooking() {
+    const formValue = this.bookingForm.value;
+    formValue.carId = Number(formValue.carId);
+    this.bookingService.createNewBooking(formValue).subscribe({
+      next: (res: APIResponse) => {
+        alert(res.message);
+        this.getbookingList();
+      },
+      error: (err: APIResponse) => alert(err.message),
+    });
+  }
 
-  onDelete(event: any) {
-    console.log(event);
+  onDelete(event: BookingResponse) {
+    this.bookingService.deleteBookingById(event.bookingId.toString()).subscribe({
+      next: (res: APIResponse) => {
+        alert('Booking successfully deleted');
+        this.getbookingList();
+      },
+      error: (err) => alert(err),
+    });
   }
 
   getbookingList() {

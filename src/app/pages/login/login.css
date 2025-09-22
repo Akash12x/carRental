@@ -118,6 +118,7 @@
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .extra a {

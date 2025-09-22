@@ -1,5 +1,7 @@
 <div class="login-wrapper">
   <div class="glass-card">
+    @if(login){
+
     <h2 class="title">Welcome Back</h2>
     <p class="subtitle">Sign in to continue</p>
 
@@ -41,9 +43,55 @@
 
       <!-- Extra -->
       <div class="extra">
-        <a href="#">Forgot password?</a>
-        <a href="#">Create account</a>
+        >
+        <a (click)="createAccount()">Create account</a>
       </div>
     </form>
+    } @else {
+    <h2 class="title">Hello There!</h2>
+    <p class="subtitle">Sign up to continue</p>
+
+    <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+      <!-- Email -->
+      <div class="input-group">
+        <i class="fa fa-envelope icon"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="User Name"
+          formControlName="username"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <i class="fa fa-lock icon"></i>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <i
+          class="fa toggle-icon"
+          [ngClass]="{
+            'fa-eye': !showPassword,
+            'fa-eye-slash': showPassword
+          }"
+          (click)="togglePassword()"
+        ></i>
+      </div>
+
+      <!-- Button -->
+      <button type="submit" (click)="createNewAccount()" class="btn-login">
+        <span>Sign up</span>
+      </button>
+
+      <!-- Extra -->
+      <div class="extra">
+        <a (click)="backtologin()">Already signed up?</a>
+      </div>
+    </form>
+    }
   </div>
 </div>
